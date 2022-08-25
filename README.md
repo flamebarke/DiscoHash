@@ -6,7 +6,7 @@
 /_____/_/____/\___/\____/_/ /_/\__,_/____/_/ /_/  
 ```
 
-### `>: (◕‿‿◕) What does this plugin do?`
+### >: What does this plugin do (◕‿‿◕)?
 
 DiscoHash is a [Pwnagotchi](https://pwnagotchi.ai/) plugin that converts pcaps captured by Pwnagotchi to a hashcat compatible hash (EAPOL/PMKID: mode 22000) and posts them to Discord using a web hook.
 
@@ -18,7 +18,8 @@ Example Output:
 
 ps. can you crack my AP? (⌐■_■)
 
-### `>: (♥‿‿♥) Installation:`
+
+### >: Installation:
 
 - [X] After you have Pwnagotchi up and running, download, compile and install [hxctools](https://github.com/ZerBea/hcxtools).
 ```
@@ -27,7 +28,6 @@ cd hcxtools
 make
 sudo make install
 ```
-
 - [X] Create a new Discord server and set up a new [web hook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
 - [X] Copy discohash.py from this repo to /usr/local/share/pwnagotchi/installed-plugins/
 ```
@@ -40,11 +40,13 @@ main.plugins.discohash.enabled = true
 main.plugins.discohash.web_hook = [YOUR WEB HOOK URL]
 ```
 
-### `>: (ᵔ◡◡ᵔ) Usage:`
+
+### >: Usage:
 
 Simply reboot Pwnagotchi make sure it has internet access (bluetooth pairing) and watch those hashes roll in!
 
-### `>: (◕‿‿◕) Notes:`
+
+### >: Notes (◕‿‿◕):
 
 DiscoHash checks for new pcap files at the end of each epoch so they will come fairly frequently. To reduce this interval modify the code to use a different callback. 
 
@@ -54,10 +56,11 @@ You can contact me by sending my Pwnagotchi some PwnMail at:
 
 `53291d7013a14b08cd8c7fea3b5de0f60f5e391f5584ac8310af5cfd96a04a4a`
 
-If you love this plugin or it helped you out in some way feel free to:
+If you love this plugin (ᵔ◡◡ᵔ) or it helped you out in some way feel free to:
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/shainlakin)
 
-### `>: (◕‿‿◕) To Do:`
+
+### >: To Do:
 
 - [ ] Add WiGLE Wifi integration to search by SSID and return lat,long
