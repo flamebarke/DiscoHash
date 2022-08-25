@@ -60,4 +60,4 @@ If you love this plugin or it helped you out in some way feel free to:
 
 ### `>: (◕‿‿◕) To Do:`
 
-- [ ] Add Wiggle Wifi integration to search by SSID and return lat,long
+- [ ] Add WiGLE Wifi integration to search by SSID and return lat,long
