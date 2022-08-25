@@ -38,16 +38,16 @@ class discohash(plugins.Plugin):
         for num, handshake in enumerate(handshakes_list):
             fullpathNoExt = handshake.split('.')[0]
             pcapFileName = handshake.split('/')[-1:][0]
-            if not os.path.isfile(fullpathNoExt + '.22000'): #if no 22000
+            if not os.path.isfile(fullpathNoExt + '.22000'): 
                 if self.write_hash(handshake):
                     successful_jobs.append('22000: ' + pcapFileName)
                 else:
                     failed_jobs.append('22000: ' + pcapFileName)
                     
-                    if not os.path.isfile(fullpathNoExt + '.22000'): #if no 22000
+                    if not os.path.isfile(fullpathNoExt + '.22000'):
                         lonely_pcaps.append(handshake)
                         logging.debug('[* DiscoHash *] Batch job: added {} to lonely list'.format(pcapFileName))
-            if ((num + 1) % 10 == 0) or (num + 1 == len(handshakes_list)): #report progress every 10, or when done
+            if ((num + 1) % 10 == 0) or (num + 1 == len(handshakes_list)): 
                 logging.info('[* DiscoHash *] Batch job: {}/{} done ({} fails)'.format(num + 1,len(handshakes_list),len(lonely_pcaps)))
         if successful_jobs:
             logging.info('[* DiscoHash *] Batch job: {} new handshake files created'.format(len(successful_jobs)))
@@ -61,7 +61,7 @@ class discohash(plugins.Plugin):
         result = subprocess.getoutput('hcxpcapngtool -o {}.22000 {} >/dev/null 2>&1'.format(fullpathNoExt,fullpath))
         analysis = subprocess.getoutput('hcxhashtool -i {}.22000 --info=stdout'.format(fullpathNoExt))
         if os.path.isfile(fullpathNoExt +  '.22000'):
-            logging.info('[* DiscoHash *] [+] EAPOL/PMKID Success: {}.22000 created'.format(filename))
+            logging.info('[* DiscoHash *] [* DiscoHash *] EAPOL/PMKID Success: {}.22000 created'.format(filename))
             
             try:
                 hash_val = open(f'{fullpathNoExt}.22000', 'r')
