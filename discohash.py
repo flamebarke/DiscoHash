@@ -91,7 +91,7 @@ class discohash(plugins.Plugin):
                             },
                         ],
                         'footer': {
-                            'text': 'Pwnagotchi v1.5.5 - DiscoHash Plugin v{} : Creators PwnMail: 53291d7013a14b08cd8c7fea3b5de0f60f5e391f5584ac8310af5cfd96a04a4a'.format(self.__version__)
+                            'text': 'Pwnagotchi v1.5.5 - DiscoHash Plugin v{} - Creators PwnMail: 53291d7013a14b08cd8c7fea3b5de0f60f5e391f5584ac8310af5cfd96a04a4a'.format(self.__version__)
                         }
                         }
                     ]
