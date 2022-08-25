@@ -20,7 +20,7 @@ ps. can you crack my AP? (⌐■_■)
 
 ### `>: (♥‿‿♥) Installation:`
 
-- [ ] After you have Pwnagotchi up and running, download, compile and install [hxctools](https://github.com/ZerBea/hcxtools).
+- [X] After you have Pwnagotchi up and running, download, compile and install [hxctools](https://github.com/ZerBea/hcxtools).
 ```
 git clone https://github.com/ZerBea/hcxtools.git
 cd hcxtools
@@ -28,13 +28,13 @@ make
 sudo make install
 ```
 
-- [ ] Create a new Discord server and set up a new [web hook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
-- [ ] Copy discohash.py from this repo to /usr/local/share/pwnagotchi/installed-plugins/
+- [X] Create a new Discord server and set up a new [web hook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
+- [X] Copy discohash.py from this repo to /usr/local/share/pwnagotchi/installed-plugins/
 ```
 cd /usr/local/share/pwnagotchi/installed-plugins
 sudo wget https://raw.githubusercontent.com/flamebarke/DiscoHash/main/discohash.py
 ```
-- [ ] Set the following options within /etc/pwnagotchi/config.toml
+- [X] Set the following options within /etc/pwnagotchi/config.toml
 ```
 main.plugins.discohash.enabled = true
 main.plugins.discohash.web_hook = [YOUR WEB HOOK URL]
@@ -42,7 +42,7 @@ main.plugins.discohash.web_hook = [YOUR WEB HOOK URL]
 
 ### `>: (ᵔ◡◡ᵔ) Usage:`
 
-Simply reboot Pwnagotchi and watch those hashes roll in!
+Simply reboot Pwnagotchi make sure it has internet access (bluetooth pairing) and watch those hashes roll in!
 
 ### `>: (◕‿‿◕) Notes:`
 
@@ -58,3 +58,6 @@ If you love this plugin or it helped you out in some way feel free to:
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/shainlakin)
 
+### `>: (◕‿‿◕) To Do:`
+
+- [ ] Add Wiggle Wifi integration to search by SSID and return lat,long
