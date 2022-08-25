@@ -91,7 +91,7 @@ class discohash(plugins.Plugin):
                             },
                         ],
                         'footer': {
-                            'text': 'Pwnagotchi v1.5.5 - DiscoHash Plugin v{} created by {}'.format(self.__version__, self.__author__)
+                            'text': 'Pwnagotchi v1.5.5 - DiscoHash Plugin v{}. Creators PwnMail: {}'.format(self.__version__, fingerprint)
                         }
                         }
                     ]
