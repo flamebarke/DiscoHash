@@ -50,7 +50,7 @@ DiscoHash checks for new pcap files at the end of each epoch so they will come f
 
 To check out how to make plugins for Pwnagotchi check the docs [here](https://pwnagotchi.ai/plugins/#developing-your-own-plugin).
 
-Feel free to contact me by sending my Pwnagotchi some PwnMail at:
+You can contact me by sending my Pwnagotchi some PwnMail at:
 
 `53291d7013a14b08cd8c7fea3b5de0f60f5e391f5584ac8310af5cfd96a04a4a`
 
