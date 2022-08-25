@@ -6,13 +6,21 @@
 /_____/_/____/\___/\____/_/ /_/\__,_/____/_/ /_/  
 ```
 
-`>: (◕‿‿◕) What does this plugin do?`
+### `>: (◕‿‿◕) What does this plugin do?`
 
 DiscoHash is a [Pwnagotchi](https://pwnagotchi.ai/) plugin that converts pcaps captured by Pwnagotchi to a hashcat compatible hash (EAPOL/PMKID: mode 22000) and posts them to Discord using a web hook.
 
-`>: (♥‿‿♥) Installation:`
+To avoid reinventing the wheel DiscoHash reuses some code taken from the [hashie](https://github.com/evilsocket/pwnagotchi-plugins-contrib/blob/master/hashie.py) and [discord](https://github.com/evilsocket/pwnagotchi-plugins-contrib/blob/master/discord.py) plugins.
 
-- [ ] After you have your Pwnagotchi up and running, download, compile and install [hxctools](https://github.com/ZerBea/hcxtools).
+Example Output:
+
+![DiscoHash Discord message](/discohash.png)
+
+ps. can you crack my AP? (⌐■_■)
+
+### `>: (♥‿‿♥) Installation:`
+
+- [ ] After you have Pwnagotchi up and running, download, compile and install [hxctools](https://github.com/ZerBea/hcxtools).
 ```
 git clone https://github.com/ZerBea/hcxtools.git
 cd hcxtools
@@ -31,6 +39,20 @@ sudo wget https://raw.githubusercontent.com/flamebarke/DiscoHash/main/discohash.
 main.plugins.discohash.enabled = true
 main.plugins.discohash.web_hook = [YOUR WEB HOOK URL]
 ```
+
+### `>: (ᵔ◡◡ᵔ) Usage:`
+
+Simply reboot Pwnagotchi and watch those hashes roll in!
+
+### `>: (◕‿‿◕) Notes:`
+
+DiscoHash checks for new pcap files at the end of each epoch so they will come fairly frequently. To reduce this interval modify the code to use a different callback. 
+
+To check out how to make plugins for Pwnagotchi check the docs [here](https://pwnagotchi.ai/plugins/#developing-your-own-plugin).
+
+Feel free to contact me by sending my Pwnagotchi some PwnMail at:
+
+`53291d7013a14b08cd8c7fea3b5de0f60f5e391f5584ac8310af5cfd96a04a4a`
 
 
 
