@@ -23,6 +23,7 @@ ps. can you crack my AP? (⌐■_■)
 
 - [X] After you have Pwnagotchi up and running, download, compile and install [hxctools](https://github.com/ZerBea/hcxtools).
 ```
+sudo apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev
 git clone https://github.com/ZerBea/hcxtools.git
 cd hcxtools
 make
