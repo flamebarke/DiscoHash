@@ -57,10 +57,6 @@ You can contact me by sending my Pwnagotchi some PwnMail at:
 
 `53291d7013a14b08cd8c7fea3b5de0f60f5e391f5584ac8310af5cfd96a04a4a`
 
-If you love this plugin (ᵔ◡◡ᵔ) or it helped you out in some way feel free to:
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/shainlakin)
-
 
 ### >: To Do:
 
