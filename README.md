@@ -38,7 +38,7 @@ sudo wget https://raw.githubusercontent.com/flamebarke/DiscoHash/main/discohash.
 - [X] Set the following options within /etc/pwnagotchi/config.toml
 ```
 main.plugins.discohash.enabled = true
-main.plugins.discohash.webhook_url = "[YOUR WEB HOOK URL]"
+main.plugins.discohash.webhook_url = "YOUR WEB HOOK URL"
 ```
 
 
