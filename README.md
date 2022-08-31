@@ -52,6 +52,8 @@ Simply reboot Pwnagotchi make sure it has internet access (bluetooth pairing) an
 
 ### >: Notes (◕‿‿◕):
 
+If you have a custom handshake directory then you will need to modify line 32 of discohash.py to your custom handshake directory.
+
 DiscoHash checks for new pcap files at the end of each epoch so they will come fairly frequently. To reduce this interval modify the code to use a different callback. 
 
 To check out how to make plugins for Pwnagotchi check the docs [here](https://pwnagotchi.ai/plugins/#developing-your-own-plugin).
