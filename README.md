@@ -60,7 +60,7 @@ To check out how to make plugins for Pwnagotchi check the docs [here](https://pw
 
 You can contact me by sending my Pwnagotchi some PwnMail at:
 
-`53291d7013a14b08cd8c7fea3b5de0f60f5e391f5584ac8310af5cfd96a04a4a`
+`f033aa5cd581f67ac5f88838de002fc240aadc74ee2025b0135e5fff4e4b5a4a`
 
 
 ### >: To Do:
