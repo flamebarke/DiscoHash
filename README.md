@@ -33,7 +33,7 @@ make
 make install
 ```
 - [X] Create a new Discord server and set up a new [web hook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
-- [X] Copy discohash.py from this repo to /usr/local/share/pwnagotchi/installed-plugins/
+- [X] Copy discohash.py from this repo to /usr/local/share/pwnagotchi/installed-plugins/ (if the directory doesn't exist create it)
 ```
 cd /usr/local/share/pwnagotchi/installed-plugins
 sudo wget https://raw.githubusercontent.com/flamebarke/DiscoHash/main/discohash.py
