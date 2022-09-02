@@ -66,3 +66,4 @@ You can contact me by sending my Pwnagotchi some PwnMail at:
 ### >: To Do:
 
 - [X] Parse lat/long from GPS and add to message
+- [ ] Add one liner for cracking the hash with hashcat
