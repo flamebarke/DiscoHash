@@ -65,5 +65,4 @@ You can contact me by sending my Pwnagotchi some PwnMail at:
 
 ### >: To Do:
 
-- [ ] Parse lat/long from GPS and add to message
-- [ ] Add WiGLE Wifi integration to search by SSID and return lat,long
+- [X] Parse lat/long from GPS and add to message
