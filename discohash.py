@@ -92,6 +92,8 @@ class discohash(plugins.Plugin):
             lon = json.dumps(raw_gps['Longitude'])
             loc_url = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
         except Exception as e:
+            lat = "NULL"
+            lon = "NULL"
             loc_url = "No GPS data available for this AP!"
 
 
