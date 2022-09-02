@@ -70,7 +70,7 @@ class discohash(plugins.Plugin):
             return False
     
 
-    def get_coord(fullpathNoExt):
+    def get_coord(self, fullpathNoExt):
         global loc_earth
         global loc_marker
         try:
