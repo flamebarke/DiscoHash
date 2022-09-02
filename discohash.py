@@ -22,6 +22,8 @@ class discohash(plugins.Plugin):
 
     # called when the plugin is loaded
     def on_loaded(self):
+        global tether
+        tether = False
         logging.info(f"[*] DiscoHash plugin loaded")
     
 
@@ -30,7 +32,15 @@ class discohash(plugins.Plugin):
         global fingerprint
         fingerprint = agent.fingerprint()
         handshake_dir = "/root/handshakes/"
-        self.process_pcaps(handshake_dir)
+        if tether:
+            self.process_pcaps(handshake_dir)
+        else:
+            return
+
+
+    def on_internet_available(self, agent):
+        global tether
+        tether = True
 
 
     def process_pcaps(self, handshake_dir):
@@ -71,19 +81,18 @@ class discohash(plugins.Plugin):
     
 
     def get_coord(self, fullpathNoExt):
-        global loc_earth
-        global loc_marker
+        global lat
+        global lon
+        global loc_url
         try:
             read_gps = open(f'{fullpathNoExt}.gps.json', 'r')
             gps_bytes = read_gps.read()
             raw_gps = json.loads(gps_bytes)
             lat = json.dumps(raw_gps['Latitude'])
             lon = json.dumps(raw_gps['Longitude'])
-            loc_earth = "https://earth.google.com/web/@{},{},14.94624199a,500d,35y,0h,0t,0r".format(lat, lon)
-            loc_marker = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
+            loc_url = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
         except Exception as e:
-            loc_earth = "(☓‿‿☓) : No GPS data available for this AP"
-            loc_marker = "(☓‿‿☓) : No GPS data available for this AP!"
+            loc_url = "No GPS data available for this AP!"
 
 
     def post_hash(self, fullpathNoExt):
@@ -98,7 +107,7 @@ class discohash(plugins.Plugin):
                 'embeds': [
                     {
                     'title': '(ᵔ◡◡ᵔ) {} sniffed a new hash!'.format(pwnagotchi.name()), 
-                    'color': 3553599,
+                    'color': 289968,
                     'url': 'https://pwnagotchi.ai/pwnfile/#!{}'.format(fingerprint),
                     'description': '__**Hash Information**__',
                     'fields': [
@@ -114,7 +123,7 @@ class discohash(plugins.Plugin):
                         },
                         {
                             'name': 'GPS Location:',
-                            'value': '{}'.format(loc_marker),
+                            'value': '[Map Waypoint]({})\n```{},{}```'.format(loc_url,lat,lon),
                             'inline': False
                         },
                     ],
