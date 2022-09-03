@@ -7,14 +7,18 @@ import pwnagotchi
 import pwnagotchi.plugins as plugins
 
 
+
+
 class discohash(plugins.Plugin):
     __author__ = 'v0yager'
-    __version__ = '1.0.0'
+    __version__ = '1.1.0'
     __license__ = 'GPL3'
     __description__ = '''
                     DiscoHash extracts hashes from pcaps (hashcat mode 22000) using hcxpcapngtool,
-                    analyses the hash using hcxhashtool and posts the output to Discord.
+                    analyses the hash using hcxhashtool and posts the output to Discord along with 
+                    any obtained GPS coordinates.
                     '''
+
 
     def __init__(self):
         logging.debug("[*] DiscoHash plugin created")
@@ -27,6 +31,12 @@ class discohash(plugins.Plugin):
         logging.info(f"[*] DiscoHash plugin loaded")
     
 
+    # called when internet is available
+    def on_internet_available(self, agent):
+        global tether
+        tether = True
+
+
     # called when an epoch is over (where an epoch is a single loop of the main algorithm)
     def on_epoch(self, agent, epoch, epoch_data):
         global fingerprint
@@ -36,11 +46,6 @@ class discohash(plugins.Plugin):
             self.process_pcaps(handshake_dir)
         else:
             return
-
-
-    def on_internet_available(self, agent):
-        global tether
-        tether = True
 
 
     def process_pcaps(self, handshake_dir):
@@ -91,14 +96,14 @@ class discohash(plugins.Plugin):
                 raw_gps = json.loads(gps_bytes)
                 lat = json.dumps(raw_gps['Latitude'])
                 lon = json.dumps(raw_gps['Longitude'])
-                loc_marker = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
+                loc_url = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
             else:
                 read_gps = open(f'{fullpathNoExt}.geo.json', 'r')
                 gps_bytes = read_gps.read()
                 raw_gps = json.loads(gps_bytes)
                 lat = json.dumps(raw_gps['location']['lat'])
                 lon = json.dumps(raw_gps['location']['lng'])
-                loc_marker = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
+                loc_url = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
         except:
             lat = "NULL"
             lon = "NULL"
@@ -109,9 +114,10 @@ class discohash(plugins.Plugin):
         try:
             hash_val = open(f'{fullpathNoExt}.22000', 'r')
             hash_data = hash_val.read()
+            hash_val.close()
             analysis = subprocess.getoutput('hcxhashtool -i {}.22000 --info=stdout'.format(fullpathNoExt))
         except Exception as e:
-            logging.warning('[!] DiscoHash: An error occured {}'.format(e))
+            logging.warning('[!] DiscoHash: An error occured while analysing the hash: {}'.format(e))
         try:
             data = {
                 'embeds': [
@@ -132,8 +138,13 @@ class discohash(plugins.Plugin):
                             'inline': False
                         },
                         {
-                            'name': 'GPS Location:',
-                            'value': '[Map Waypoint]({})\n```{},{}```'.format(loc_url,lat,lon),
+                            'name': '__**Location Information**__',
+                            'value': '[GPS Waypoint]({})'.format(loc_url),
+                            'inline': False
+                        },
+                        {
+                            'name': 'Raw Coordinates:',
+                            'value': '```{},{}```'.format(lat,lon),
                             'inline': False
                         },
                     ],
