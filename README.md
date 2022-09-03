@@ -10,7 +10,7 @@
 
 DiscoHash is a [Pwnagotchi](https://pwnagotchi.ai/) plugin that converts pcaps captured by Pwnagotchi to a hashcat compatible hash (EAPOL/PMKID: mode 22000) and posts them to Discord along with any GPS location data (from USB dongle or net-pos plugin) using a web hook.
 
-To avoid reinventing the wheel DiscoHash reuses some code taken from the [hashie](https://github.com/evilsocket/pwnagotchi-plugins-contrib/blob/master/hashie.py) and [discord](https://github.com/evilsocket/pwnagotchi-plugins-contrib/blob/master/discord.py) plugins.
+To avoid reinventing the wheel DiscoHash reuses a couple of functions from the [hashie](https://github.com/evilsocket/pwnagotchi-plugins-contrib/blob/master/hashie.py) and [discord](https://github.com/evilsocket/pwnagotchi-plugins-contrib/blob/master/discord.py) plugins.
 
 Example Output:
 
