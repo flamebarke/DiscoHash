@@ -85,16 +85,24 @@ class discohash(plugins.Plugin):
         global lon
         global loc_url
         try:
-            read_gps = open(f'{fullpathNoExt}.gps.json', 'r')
-            gps_bytes = read_gps.read()
-            raw_gps = json.loads(gps_bytes)
-            lat = json.dumps(raw_gps['Latitude'])
-            lon = json.dumps(raw_gps['Longitude'])
-            loc_url = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
-        except Exception as e:
+            if os.path.isfile(fullpathNoExt + '.gps.json'):
+                read_gps = open(f'{fullpathNoExt}.gps.json', 'r')
+                gps_bytes = read_gps.read()
+                raw_gps = json.loads(gps_bytes)
+                lat = json.dumps(raw_gps['Latitude'])
+                lon = json.dumps(raw_gps['Longitude'])
+                loc_marker = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
+            else:
+                read_gps = open(f'{fullpathNoExt}.geo.json', 'r')
+                gps_bytes = read_gps.read()
+                raw_gps = json.loads(gps_bytes)
+                lat = json.dumps(raw_gps['location']['lat'])
+                lon = json.dumps(raw_gps['location']['lng'])
+                loc_marker = "https://www.google.com/maps/search/?api=1&query={},{}".format(lat, lon)
+        except:
             lat = "NULL"
             lon = "NULL"
-            loc_url = "No GPS data available for this AP!"
+            loc_url = "https://www.youtube.com/watch?v=gkTb9GP9lVI"
 
 
     def post_hash(self, fullpathNoExt):
@@ -131,7 +139,7 @@ class discohash(plugins.Plugin):
                     ],
                     'footer': {
                         'text': 'Pwnagotchi v1.5.5 - DiscoHash Plugin v{} \
-                        \nAuthors PwnMail: 53291d7013a14b08cd8c7fea3b5de0f60f5e391f5584ac8310af5cfd96a04a4a'.format(self.__version__)
+                        \nAuthors PwnMail: f033aa5cd581f67ac5f88838de002fc240aadc74ee2025b0135e5fff4e4b5a4a'.format(self.__version__)
                     }
                     }
                 ]
