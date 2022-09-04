@@ -6,7 +6,7 @@ __version__ = "1.0.0"
 __description__ = """
                 This bot will return the hashes obtained using discohash
                 for a specified number of access points as a txt file.
-                Message the bot with !dumphash [NUMBER OF APS].
+                Message the bot with !dumphash [NUMBER OF APs].
                 """
 
 import os
