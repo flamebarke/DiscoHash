@@ -18,6 +18,8 @@ Example Output:
 
 ![DiscoHash Discord message](/discohash.png)
 
+![Hashbot](/hashbot.png)
+
 ps. can you crack my AP? (⌐■_■)
 
 
