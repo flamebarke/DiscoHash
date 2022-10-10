@@ -12,6 +12,8 @@ DiscoHash is a [Pwnagotchi](https://pwnagotchi.ai/) plugin that converts pcaps c
 
 To avoid reinventing the wheel DiscoHash reuses a couple of functions from the [hashie](https://github.com/evilsocket/pwnagotchi-plugins-contrib/blob/master/hashie.py) and [discord](https://github.com/evilsocket/pwnagotchi-plugins-contrib/blob/master/discord.py) plugins.
 
+Within the bot folder there is a Discord Bot that will scrape all captured hashes from the discord server and return them in a text file. This is not required for the plugin, but it makes it easier to pull large amounts of hashes quickly. You can modify the discord bot to only pull hashes from within a certain date range etc.
+
 Example Output:
 
 ![DiscoHash Discord message](/discohash.png)
