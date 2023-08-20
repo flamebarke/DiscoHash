@@ -45,7 +45,7 @@ def run_discord_bot():
             try:
                 limit_messages = int(user_message.split(' ')[1])
             except:
-                limit_messages = 100
+                limit_messages = DEFAULT_MESSAGES_LIMIT
             with open('hashes.22000', 'w') as f:
                 o_cahnnel = client.get_channel(int(CHANNEL_ID))
                 if limit_messages > DEFAULT_MESSAGES_LIMIT:
