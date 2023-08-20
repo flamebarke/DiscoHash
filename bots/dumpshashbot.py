@@ -5,6 +5,8 @@ from os import remove
 TOKEN = "<TOKEN>"
 CHANNEL_ID = <CHANNEL_ID_INT>
 CHANNEL_NAME = "<CHANNEL_NAME>"
+WEBHOOK_NAME = "<WEBHOOK_NAME_FOR_FILTERING>"
+DEFAULT_MESSAGES_LIMIT = 100
 
 
 def handle_response(message)->str:
@@ -39,17 +41,28 @@ def run_discord_bot():
         
         print(f"{username} Said: '{user_message}' on channel:'{channel}'.")
 
-        if user_message == '!dumphash' and channel == CHANNEL_NAME:
+        if '!dumphash' in user_message and channel == CHANNEL_NAME:
+            try:
+                limit_messages = int(user_message.split(' ')[1])
+            except:
+                limit_messages = 100
             with open('hashes.22000', 'w') as f:
                 o_cahnnel = client.get_channel(int(CHANNEL_ID))
-                messages = o_cahnnel.history(limit=100)
-                async for i in messages: 
-                    try:
-                        hash_dict = i.embeds[0].to_dict() 
-                        hash = hash_dict['fields'][0]['value']
-                        f.write(hash[1:-1])
-                    except:
-                        pass
+                if limit_messages > DEFAULT_MESSAGES_LIMIT:
+                    DEFAULT_MESSAGES_LIMIT = limit_messages*2
+                messages = o_cahnnel.history(limit=DEFAULT_MESSAGES_LIMIT)
+                count = 0
+                async for i in messages:
+                    if WEBHOOK_NAME in str(i):
+                        count +=1
+                        try:
+                            hash_dict = i.embeds[0].to_dict() 
+                            hash = hash_dict['fields'][0]['value']
+                            f.write(hash[1:-1])
+                            if count == limit_messages:
+                                break
+                        except:
+                            pass
             with open('hashes.22000', 'r') as f:
                 await message.channel.send('''WPA\WPA2 is minimum 8 chars. \nFor BruteForce from 8 to 11 digits use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?d?d?d?d?d?d?d?d?d?d?d -i --increment-min=8 \n\nFor BruteForce from 8 to 11 chars use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?a?a?a?a?a?a?a?a?a?a?a -i --increment-min=8 \n\n'''
                                            ,file=discord.File(f, 'hashcat.22000.txt'))
