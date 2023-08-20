@@ -64,7 +64,7 @@ def run_discord_bot():
                         except:
                             pass
             with open('hashes.22000', 'r') as f:
-                await message.channel.send('''WPA\WPA2 is minimum 8 chars. \nFor BruteForce from 8 to 11 digits use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?d?d?d?d?d?d?d?d?d?d?d -i --increment-min=8 \n\nFor BruteForce from 8 to 11 chars use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?a?a?a?a?a?a?a?a?a?a?a -i --increment-min=8 \n\n'''
+                await message.channel.send(f'''INFO:Gathering up to last {DEFAULT_MESSAGES_LIMIT} hashes.\n\nWPA\WPA2 is minimum 8 chars. \nFor BruteForce from 8 to 11 digits use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?d?d?d?d?d?d?d?d?d?d?d -i --increment-min=8 \n\nFor BruteForce from 8 to 11 chars use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?a?a?a?a?a?a?a?a?a?a?a -i --increment-min=8 \n\n'''
                                            ,file=discord.File(f, 'hashcat.22000.txt'))
                 print('send file!')
             remove("hashes.22000")
