@@ -9,6 +9,7 @@ WEBHOOK_NAME = "<WEBHOOK_NAME_FOR_FILTERING>"
 DEFAULT_MESSAGES_LIMIT = 100
 
 
+
 def handle_response(message)->str:
     p_message = message.lower()
     if p_message == 'hello dumphash' or p_message == '!dumphash' or p_message == '!help dumphash' or p_message == '!helpdumphash':
@@ -49,8 +50,10 @@ def run_discord_bot():
             with open('hashes.22000', 'w') as f:
                 o_cahnnel = client.get_channel(int(CHANNEL_ID))
                 if limit_messages > DEFAULT_MESSAGES_LIMIT:
-                    DEFAULT_MESSAGES_LIMIT = limit_messages*2
-                messages = o_cahnnel.history(limit=DEFAULT_MESSAGES_LIMIT)
+                    limit = limit_messages*2
+                else:
+                    limit = DEFAULT_MESSAGES_LIMIT
+                messages = o_cahnnel.history(limit=limit)
                 count = 0
                 async for i in messages:
                     if WEBHOOK_NAME in str(i):
@@ -64,7 +67,7 @@ def run_discord_bot():
                         except:
                             pass
             with open('hashes.22000', 'r') as f:
-                await message.channel.send(f'''INFO:Gathering up to last {DEFAULT_MESSAGES_LIMIT} hashes.\n\nWPA\WPA2 is minimum 8 chars. \nFor BruteForce from 8 to 11 digits use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?d?d?d?d?d?d?d?d?d?d?d -i --increment-min=8 \n\nFor BruteForce from 8 to 11 chars use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?a?a?a?a?a?a?a?a?a?a?a -i --increment-min=8 \n\n'''
+                await message.channel.send(f'''Gathering up to last {limit_messages} hashes.\n\nWPA\WPA2 is minimum 8 chars. \nFor BruteForce from 8 to 11 digits use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?d?d?d?d?d?d?d?d?d?d?d -i --increment-min=8 \n\nFor BruteForce from 8 to 11 chars use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?a?a?a?a?a?a?a?a?a?a?a -i --increment-min=8 \n\n'''
                                            ,file=discord.File(f, 'hashcat.22000.txt'))
                 print('send file!')
             remove("hashes.22000")
