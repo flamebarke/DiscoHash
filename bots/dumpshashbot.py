@@ -41,7 +41,7 @@ def run_discord_bot():
 
         if user_message == '!dumphash' and channel == CHANNEL_NAME:
             with open('hashes.22000', 'w') as f:
-                o_cahnnel = client.get_channel(int())
+                o_cahnnel = client.get_channel(int(CHANNEL_ID))
                 messages = o_cahnnel.history(limit=100)
                 async for i in messages: 
                     try:
@@ -51,7 +51,8 @@ def run_discord_bot():
                     except:
                         pass
             with open('hashes.22000', 'r') as f:
-                await message.channel.send(file=discord.File(f, 'hashcat.22000.txt'))
+                await message.channel.send('''WPA\WPA2 is minimum 8 chars. \nFor BruteForce from 8 to 11 digits use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?d?d?d?d?d?d?d?d?d?d?d -i --increment-min=8 \n\nFor BruteForce from 8 to 11 chars use this: \n  hashcat -m 22000 -a 3 hashcat.22000.txt ?a?a?a?a?a?a?a?a?a?a?a -i --increment-min=8 \n\n'''
+                                           ,file=discord.File(f, 'hashcat.22000.txt'))
                 print('send file!')
             remove("hashes.22000")
 
