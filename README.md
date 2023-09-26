@@ -64,7 +64,7 @@ To check out how to make plugins for Pwnagotchi check the docs [here](https://pw
 
 You can contact me by sending my Pwnagotchi some PwnMail at:
 
-`f033aa5cd581f67ac5f88838de002fc240aadc74ee2025b0135e5fff4e4b5a4a`
+`e541dfdb7e835d0737189a119493843775fe0d070877b09eb895b122906d2f3a`
 
 
 ### >: To Do:
