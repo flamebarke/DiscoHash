@@ -25,7 +25,7 @@ ps. can you crack my AP? (⌐■_■)
 
 ### >: Installation:
 
-- [X] After you have Pwnagotchi up and running, install dependencies and either scp over the hcxtools binaries or use make install using this version of hcxtools: [hxctools]([https://github.com/ZerBea/hcxtools](https://salsa.debian.org/pkg-security-team/hcxtools)).
+- [X] After you have Pwnagotchi up and running, install dependencies and either scp over the hcxtools binaries or use make install using this version of hcxtools: [hxctools](https://salsa.debian.org/pkg-security-team/hcxtools).
 ```
 sudo su
 apt-get update
