@@ -42,12 +42,6 @@ unzip hcxtools.zip
 cd hcxtools
 cp ./* /usr/bin/
 ```
----
-#### Update 08/10/23:
-
-hxctools no longer compiles correctly. Instead use `scp` to copy `hcxtools.zip` onto the pwnagotchi as shown above, extract and copy the binaries into `/usr/bin`.
-
----
 
 - [X] Create a new Discord server and set up a new [web hook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
 - [X] Copy discohash.py from this repo to /usr/local/share/pwnagotchi/installed-plugins/ (if the directory doesn't exist create it)
