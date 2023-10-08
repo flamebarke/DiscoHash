@@ -41,6 +41,7 @@ ssh pi@IPADDRESS
 unzip hcxtools.zip
 cd hcxtools
 cp ./* /usr/bin/
+chmod ug+x /usr/bin/hcxpcapngtool
 ```
 
 - [X] Create a new Discord server and set up a new [web hook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
