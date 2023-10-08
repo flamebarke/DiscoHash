@@ -31,11 +31,12 @@ sudo su
 apt-get update
 apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev
 cd /opt
+```
 ~~git clone https://github.com/ZerBea/hcxtools.git~~
 ~~cd hcxtools~~
 ~~make~~
 ~~make install~~
-```
+
 #### Update 08/10/23:
 hxctools no longer compiles correctly. Instead use `scp` to copy `hcxtools.zip` onto the pwnagotchi, extract and copy the binaries into `/usr/bin`.
 
