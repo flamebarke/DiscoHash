@@ -27,17 +27,15 @@ ps. can you crack my AP? (⌐■_■)
 
 - [X] After you have Pwnagotchi up and running, install dependencies and either scp over the pre-compiled hcxtools binaries from hcxtools.zip or build from source using `make install` using this version of hcxtools: [hxctools](https://salsa.debian.org/pkg-security-team/hcxtools).
 ```
-sudo su
-apt-get update
-apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev
-cd /opt
-
 # Run the below command from your host machine
 cd /DiscoHash
 scp hxctools.zip pi@IPADDRESS:~/
 ssh pi@IPADDRESS
 
-# Then run the following on your pwnagotchi
+# Then run the following on your pwnagotchi to install dependencies and copy/extract the precompiled hcxtools binaries
+sudo su
+apt-get update
+apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev
 unzip hcxtools.zip
 cd hcxtools
 cp ./* /usr/bin/
