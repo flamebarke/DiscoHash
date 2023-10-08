@@ -32,7 +32,7 @@ cd /DiscoHash
 scp hxctools.zip pi@IPADDRESS:~/
 ssh pi@IPADDRESS
 
-# Then run the following on your pwnagotchi to install dependencies and copy/extract the precompiled hcxtools binaries
+# Then run the following on your pwnagotchi to install hcxtools and it's dependencies
 sudo su
 apt-get update
 apt-get install libcurl4-openssl-dev libssl-dev zlib1g-dev
