@@ -25,7 +25,7 @@ ps. can you crack my AP? (⌐■_■)
 
 ### >: Installation:
 
-- [X] After you have Pwnagotchi up and running, download, compile and install [hxctools](https://github.com/ZerBea/hcxtools).
+- [X] After you have Pwnagotchi up and running, download, compile and install [hxctools](https://salsa.debian.org/pkg-security-team/hcxtools).
 ```
 sudo su
 apt-get update
